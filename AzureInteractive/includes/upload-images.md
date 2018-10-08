@@ -2,19 +2,19 @@
 title: Arquivo de inclusão
 description: Arquivo de inclusão
 services: functions
-author: tdykstra
+author: ggailey777
 manager: jeconnoc
 ms.service: multiple
 ms.topic: include
 ms.date: 06/21/2018
-ms.author: tdykstra
+ms.author: glenga
 ms.custom: include file
-ms.openlocfilehash: 56cfb4c2893977086309660f4f6941fd0d648913
-ms.sourcegitcommit: e721422a57e6deb95245135fd9f4f5677c344d93
+ms.openlocfilehash: 51c7d3e64424d499b473f3b138ce249a9cfd0182
+ms.sourcegitcommit: 81587470a181e314242c7a97cd0f91c82d4fe232
 ms.translationtype: HT
 ms.contentlocale: pt-BR
-ms.lasthandoff: 07/26/2018
-ms.locfileid: "40079069"
+ms.lasthandoff: 10/01/2018
+ms.locfileid: "47460068"
 ---
 O aplicativo que você está compilando é uma galeria de fotos. Ele usa o JavaScript do lado do cliente a fim de chamar as APIs para carregar e exibir imagens. Neste módulo, você criará uma API usando uma função sem servidor que gera uma URL de tempo limitado para carregar uma imagem. O aplicativo Web usa a URL gerada para carregar uma imagem no Armazenamento de Blobs usando a [API REST do Armazenamento de Blobs](https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api).
 
@@ -36,12 +36,21 @@ O Azure Functions é um serviço que executa funções sem servidor. Uma funçã
 
 Um aplicativo do Azure Functions é um contêiner para uma ou mais funções sem servidor.
 
-1. Crie um novo aplicativo do Azure Functions com um nome exclusivo no grupo de recursos que você criou anteriormente denominado **first-serverless-app**. Os aplicativos de funções exigem uma conta de armazenamento. Neste tutorial, você deve usar a conta de armazenamento existente.
+Crie um novo aplicativo do Azure Functions com um nome exclusivo no grupo de recursos que você criou anteriormente denominado **first-serverless-app**. Os aplicativos de funções exigem uma conta de armazenamento. Neste tutorial, você deve usar a conta de armazenamento existente.
 
-    ```azurecli
-    az functionapp create -n <function app name> -g first-serverless-app -s <storage account name> -c westcentralus
-    ```
+```azurecli
+az functionapp create -n <function app name> -g first-serverless-app -s <storage account name> -c westcentralus
+```
 
+## <a name="configure-the-function-app"></a>Configurar o aplicativo de funções
+
+O aplicativo de funções neste tutorial requer a versão 1.x da execução do Functions. Definir a `FUNCTIONS_WORKER_RUNTIME` configuração do aplicativo para `~1` afixa o aplicativo de funções na última versão 1.x. Defina as configurações de aplicativo com o comando [az functionapp config appsettings set](https://docs.microsoft.com/cli/azure/functionapp/config/appsettings#set).
+
+O seguinte comando da CLI do Azure, '<nome_aplicativo> é o nome do seu aplicativo de funções.
+
+```azurecli
+az functionapp config appsettings set --name <function app name> --g first-serverless-app --settings FUNCTIONS_WORKER_RUNTIME=~1
+```
 
 ## <a name="create-an-http-triggered-serverless-function"></a>Criar uma função sem servidor disparada por HTTP
 
