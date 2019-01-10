@@ -49,7 +49,7 @@ O aplicativo de funções neste tutorial requer a versão 1.x da execução do F
 O seguinte comando da CLI do Azure, '<nome_aplicativo> é o nome do seu aplicativo de funções.
 
 ```azurecli
-az functionapp config appsettings set --name <function app name> --g first-serverless-app --settings FUNCTIONS_EXTENSION_VERSION=~1
+az functionapp config appsettings set --name <function app name> -g first-serverless-app --settings FUNCTIONS_EXTENSION_VERSION=~1
 ```
 
 ## <a name="create-an-http-triggered-serverless-function"></a>Criar uma função sem servidor disparada por HTTP
